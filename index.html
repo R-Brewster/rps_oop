@@ -11,13 +11,15 @@
         </style>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
-            $(document).ready(function(){
-               var rpsModel = new Model();
-               var rpsView = new View();
-               var rpsController = new Controller();
-//               Controller.init();
+            $(document).ready(function() {
+                var rpsModel = new Model();
+                var rpsView = new View();
+                var rpsController = new Controller();
+                rpsController.init();
             });
-            var choicesArr = ["rock", "string", "paper"];
+
+            var choices = ['rock', 'paper', 'scissors'];
+
             /**
              * Model
              * - randomly generates and stores computer's move
@@ -25,7 +27,15 @@
              * @constructor
              */
             function Model(){
+                this.pickCharacter = function() {
+                    this.compChoice = Math.floor(Math.random()*3);
+                    this.compChoice = choices[compChoice];
+                    return (this.compChoice === 'rock' || 'paper' || 'scissors');
+                };
 
+                this.handleComputerCharacter = function() {
+                    return this.compChoice;
+                }
             }
 
             /**
@@ -67,7 +77,27 @@
              * @constructor
              */
             function Controller(){
+                this.init = function (){
+                    console.log('init called');
+                    this.pickCharacter = true; //rpsModel.pickCharacter()
+                    if (this.pickCharacter === true){
+                        this.startGame()
+                    }
+                };
+                this.startGame = function(){
+                    console.log('startGame called');
+                    this. displayChoices = $('button').removeClass("hidden"); //rpsView.displayChoices()
+                    this.choiceMade = true; //rpsView.choiceMade()
+                    this.gameStarted = true;
+                };
+                this.playGame = function(){
+                    if(this.gameStarted === true){
+                        this.handleUserCharacter = "paper"; //rpsView.handleUserCharacter()
+                        this.handleComputerCharacter = "rock"; //rpsModel.handleComputerCharacter()
+                        rpsView.highlightChoice();
 
+                    }
+                }
             }
         </script>
         
