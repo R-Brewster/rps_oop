@@ -11,7 +11,6 @@
         </style>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
-
             $(document).ready(function() {
                 var rpsModel = new Model();
                 var rpsView = new View();
@@ -56,7 +55,27 @@
              * @constructor
              */
             function Controller(){
+                this.init = function (){
+                    console.log('init called');
+                    this.pickCharacter = true; //rpsModel.pickCharacter()
+                    if (this.pickCharacter === true){
+                        this.startGame()
+                    }
+                };
+                this.startGame = function(){
+                    console.log('startGame called');
+                    this. displayChoices = $('button').removeClass("hidden"); //rpsView.displayChoices()
+                    this.choiceMade = true; //rpsView.choiceMade()
+                    this.gameStarted = true;
+                };
+                this.playGame = function(){
+                    if(this.gameStarted === true){
+                        this.handleUserCharacter = "paper"; //rpsView.handleUserCharacter()
+                        this.handleComputerCharacter = "rock"; //rpsModel.handleComputerCharacter()
+                        rpsView.highlightChoice();
 
+                    }
+                }
             }
         </script>
         
