@@ -36,8 +36,8 @@
              */
             function View(){
                 this.displayChoices = function(){
-                    console.log('choices displayed');
                     $("button").removeClass('hidden');
+                    console.log('choices displayed');
                     return true
                 };
                 this.handleUserCharacter = function(){
@@ -54,7 +54,7 @@
                 this.displayResult = function(strMessage){
                     console.log('game results revealed');
                     $("#output").text(strMessage);
-                }
+                };
                 this.resetGame = function(){
                     console.log('game reset enabled');
                 }
