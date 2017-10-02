@@ -45,7 +45,29 @@
              * @constructor
              */
             function View(){
-
+                this.displayChoices = function(){
+                    $("button").removeClass('hidden');
+                    console.log('choices displayed');
+                    return true
+                };
+                this.handleUserCharacter = function(){
+                    console.log('click handler enabled');
+                    $("button").click(function(){
+                        var strChoice = this.text();
+                        return strChoice
+                    });
+                };
+                this.showChoice = function(choice){
+                    console.log('user choice shown');
+                    $("#output").text(choice);
+                };
+                this.displayResult = function(strMessage){
+                    console.log('game results revealed');
+                    $("#output").text(strMessage);
+                };
+                this.resetGame = function(){
+                    console.log('game reset enabled');
+                }
             }
 
             /**
@@ -86,7 +108,7 @@
         <button id="paper" class="user_move hidden">Paper</button>
         <button id="scissors" class="user_move hidden">Scissors</button>
         <button id="reset" class="reset_game hidden">Reset Game</button>
-        <div id="output" class="game_output hidden"></div>
+        <div id="output" class="game_output"></div>
     </body>
   
 </html>
