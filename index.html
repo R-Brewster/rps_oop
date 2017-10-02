@@ -4,8 +4,20 @@
         <meta charset="utf-8">
         <title>Rock-Paper-Scissors OOP</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <style>
+            .hidden {
+                display: none;
+            }
+        </style>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
+            $(document).ready(function(){
+               var rpsModel = new Model();
+               var rpsView = new View();
+               var rpsController = new Controller();
+//               Controller.init();
+            });
+            var choicesArr = ["rock", "string", "paper"];
             /**
              * Model
              * - randomly generates and stores computer's move
@@ -23,7 +35,29 @@
              * @constructor
              */
             function View(){
-
+                this.displayChoices = function(){
+                    console.log('choices displayed');
+                    $("button").removeClass('hidden');
+                    return true
+                };
+                this.handleUserCharacter = function(){
+                    console.log('click handler enabled');
+                    $("button").click(function(){
+                        var strChoice = this.text();
+                        return strChoice
+                    });
+                };
+                this.showChoice = function(choice){
+                    console.log('user choice shown');
+                    $("#output").text(choice);
+                };
+                this.displayResult = function(strMessage){
+                    console.log('game results revealed');
+                    $("#output").text(strMessage);
+                }
+                this.resetGame = function(){
+                    console.log('game reset enabled');
+                }
             }
 
             /**
@@ -40,10 +74,10 @@
     </head>
     
     <body>
-        <button id="rock" class="user_move">Rock</button>
-        <button id="paper" class="user_move">Paper</button>
-        <button id="scissors" class="user_move">Scissors</button>
-        <button id="reset" class="reset_game">Reset Game</button>
+        <button id="rock" class="user_move hidden">Rock</button>
+        <button id="paper" class="user_move hidden">Paper</button>
+        <button id="scissors" class="user_move hidden">Scissors</button>
+        <button id="reset" class="reset_game hidden">Reset Game</button>
         <div id="output" class="game_output"></div>
     </body>
   
