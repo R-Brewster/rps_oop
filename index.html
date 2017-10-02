@@ -11,11 +11,11 @@
         </style>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
-            $(document).ready (function (){
+            $(document).ready(function() {
                 var rpsModel = new Model();
                 var rpsView = new View();
                 var rpsController = new Controller();
-                rpsController.init()
+                rpsController.init();
             });
 
             var choices = ['rock', 'paper', 'scissors'];
@@ -27,7 +27,15 @@
              * @constructor
              */
             function Model(){
+                this.pickCharacter = function() {
+                    this.compChoice = Math.floor(Math.random()*3);
+                    this.compChoice = choices[compChoice];
+                    return (this.compChoice === 'rock' || 'paper' || 'scissors');
+                };
 
+                this.handleComputerCharacter = function() {
+                    return this.compChoice;
+                }
             }
 
             /**
