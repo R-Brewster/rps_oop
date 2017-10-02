@@ -4,8 +4,23 @@
         <meta charset="utf-8">
         <title>Rock-Paper-Scissors OOP</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <style>
+            .hidden {
+                display: none;
+            }
+        </style>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         <script>
+
+            $(document).ready(function() {
+                var rpsModel = new Model();
+                var rpsView = new View();
+                var rpsController = new Controller();
+                rpsController.init();
+            });
+
+            var choices = ['rock', 'paper', 'scissors'];
+
             /**
              * Model
              * - randomly generates and stores computer's move
@@ -13,7 +28,15 @@
              * @constructor
              */
             function Model(){
+                this.pickCharacter = function() {
+                    this.compChoice = Math.floor(Math.random()*3);
+                    this.compChoice = choices[compChoice];
+                    return (this.compChoice === 'rock' || 'paper' || 'scissors');
+                };
 
+                this.handleComputerCharacter = function() {
+                    return this.compChoice;
+                }
             }
 
             /**
@@ -40,11 +63,11 @@
     </head>
     
     <body>
-        <button id="rock" class="user_move">Rock</button>
-        <button id="paper" class="user_move">Paper</button>
-        <button id="scissors" class="user_move">Scissors</button>
-        <button id="reset" class="reset_game">Reset Game</button>
-        <div id="output" class="game_output"></div>
+        <button id="rock" class="user_move hidden">Rock</button>
+        <button id="paper" class="user_move hidden">Paper</button>
+        <button id="scissors" class="user_move hidden">Scissors</button>
+        <button id="reset" class="reset_game hidden">Reset Game</button>
+        <div id="output" class="game_output hidden"></div>
     </body>
   
 </html>
